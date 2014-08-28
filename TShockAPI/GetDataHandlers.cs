@@ -29,6 +29,7 @@ using Terraria.ID;
 using TShockAPI.DB;
 using TShockAPI.Net;
 using Terraria;
+using System.Data;
 
 namespace TShockAPI
 {
@@ -2242,10 +2243,23 @@ namespace TShockAPI
 							args.Player.SendMessage("Disabled for cheating: " + args.Player.IgnoreActionsForCheating,
 													Color.Red);
 						}
-						else if (args.Player.IgnoreActionsForDisabledArmor != "none")
+						else if (args.Player.IgnoreActionsForDisabledArmor != "none") //here2
 						{
-							args.Player.SendMessage(
-								"Disabled for banned armor: " + args.Player.IgnoreActionsForDisabledArmor, Color.Red);
+                            string msg;
+							var ban = TShock.Itembans.GetItemBanByName(args.Player.IgnoreActionsForDisabledArmor);
+							if (ban.AllowedGroups.Count == 0)
+							{
+								msg = "" + args.Player.IgnoreActionsForDisabledArmor;
+							}
+							else
+							{
+								var group = TShock.Groups.GetGroupByName(ban.AllowedGroups.First());
+                                msg = string.Format("'{0}'은(는) 레벨 {1}부터 착용할 수 있습니다.",
+									args.Player.IgnoreActionsForDisabledArmor, group.Name);
+							}
+							args.Player.SendMessage(msg, Color.Magenta);
+                            //args.Player.SendMessage(
+                            //    "Disabled for banned armor: " + args.Player.IgnoreActionsForDisabledArmor, Color.Red);
 						}
 						else if (args.Player.IgnoreActionsForInventory != "none")
 						{
@@ -2295,13 +2309,28 @@ namespace TShockAPI
 
 			if (control[5])
 			{
-				if (TShock.Itembans.ItemIsBanned(args.TPlayer.inventory[item].name, args.Player))
+				if (TShock.Itembans.ItemIsBanned(args.TPlayer.inventory[item].name, args.Player))//here1
 				{
-					control[5] = false;
-					args.Player.Disable("Using banned item");
-					args.Player.SendMessage(
-						string.Format("You cannot use {0} on this server. Your actions are being ignored.",
-									  args.TPlayer.inventory[item].name), Color.Red);
+                    control[5] = false;
+                    args.Player.Disable("Using banned item");
+                    string msg;
+                    var ban = TShock.Itembans.GetItemBanByName(args.TPlayer.inventory[item].name);
+                    if (ban.AllowedGroups.Count == 0)
+                    {
+                        msg = string.Format("'{0}'은(는) 사용이 금지되어 있습니다.",
+                                      args.TPlayer.inventory[item].name);
+                    }
+                    else
+                    {
+                        var group = TShock.Groups.GetGroupByName(ban.AllowedGroups.First());
+                        msg = string.Format("'{0}'은(는) 레벨 {1}부터 사용할 수 있습니다.",
+                            args.TPlayer.inventory[item].name, group.Name);
+                    }
+                    args.Player.SendMessage(msg, Color.Magenta);
+                    //control[5] = false;
+                    //args.Player.Disable("Using banned item");
+                    //args.Player.SendMessage(string.Format("You should be at least Level {0} to use {0}", args.TPlayer.inventory[item].name), Color.Red);
+                    ////string.Format("You cannot use {0} on this server. Your actions are being ignored.", args.TPlayer.inventory[item].name), Color.Red);
 				}
 
 				if (args.TPlayer.inventory[item].name == "Mana Crystal" && args.Player.TPlayer.statManaMax <= 180)

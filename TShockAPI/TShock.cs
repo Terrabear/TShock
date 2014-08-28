@@ -805,14 +805,27 @@ namespace TShockAPI
 					check = "none";
 					foreach (Item item in player.TPlayer.armor)
 					{
-						if (Itembans.ItemIsBanned(item.name, player))
+						if (Itembans.ItemIsBanned(item.name, player)) //here3
 						{
 							player.SetBuff(30, 120); //Bleeding
 							player.SetBuff(36, 120); //Broken Armor
-							check = "Remove armor/accessory " + item.name;
+							check = "" + item.name;
+                            string msg;
+                            var ban = TShock.Itembans.GetItemBanByName(item.name);
+                            if (ban.AllowedGroups.Count == 0)
+                            {
+                                msg = string.Format("'{0}'은(는) 착용이 금지되어 있습니다.", check);
+                            }
+                            else
+                            {
+                                var group = TShock.Groups.GetGroupByName(ban.AllowedGroups.First());
+                                msg = string.Format("'{0}'은(는) 레벨 {1}부터 착용할 수 있습니다.",
+                                    item.name, group.Name);
+                            }
+                            player.SendMessage(msg, Color.Magenta);
 							
-							player.SendErrorMessage(string.Format("You are wearing banned equipment. {0}", check));
-							break;
+                            //player.SendErrorMessage(string.Format("You are wearing banned equipment. {0}", check));
+                            //break;
 						}
 					}
 					player.IgnoreActionsForDisabledArmor = check;
@@ -1240,7 +1253,7 @@ namespace TShockAPI
 			if (Config.RememberLeavePos && (RememberedPos.GetLeavePos(player.Name, player.IP) != Vector2.Zero) && !player.LoginHarassed)
 			{
 				player.RPPending = 3;
-				player.SendMessage("You will be teleported to your last known location...", Color.Red);
+				player.SendMessage("최근에 접속을 종료했던 곳으로 이동합니다..", Color.Aqua);
 			}
 
 			args.Handled = true;
