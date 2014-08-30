@@ -16,13 +16,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
-using MySql.Data.MySqlClient;
 
 namespace TShockAPI.DB
 {
@@ -54,26 +54,25 @@ namespace TShockAPI.DB
 
 			// Add default groups if they don't exist
 			AddDefaultGroup("guest", "",
-				string.Join(",", Permissions.canbuild, Permissions.canregister, Permissions.canlogin, Permissions.canpartychat,
-					Permissions.cantalkinthird, Permissions.canchat));
+				string.Join(",", Permissions.canregister, Permissions.canlogin, Permissions.canchat));
 
-			AddDefaultGroup("default", "guest",
-				string.Join(",", Permissions.warp, Permissions.canchangepassword));
+			AddDefaultGroup("default", "",
+				string.Join(",", Permissions.canchat, Permissions.canbuild, Permissions.canchangepassword));
 
-			AddDefaultGroup("newadmin", "default",
-				string.Join(",", Permissions.kick, Permissions.editspawn, Permissions.reservedslot));
+            //AddDefaultGroup("newadmin", "default",
+            //    string.Join(",", Permissions.kick, Permissions.editspawn, Permissions.reservedslot));
 
-			AddDefaultGroup("admin", "newadmin",
-				string.Join(",", Permissions.ban, Permissions.whitelist, "tshock.world.time.*", Permissions.spawnboss,
-					Permissions.spawnmob, Permissions.managewarp, Permissions.time, Permissions.tp, Permissions.slap,
-					Permissions.kill, Permissions.logs,
-					Permissions.immunetokick, Permissions.tpothers));
+            //AddDefaultGroup("admin", "newadmin",
+            //    string.Join(",", Permissions.ban, Permissions.whitelist, "tshock.world.time.*", Permissions.spawnboss,
+            //        Permissions.spawnmob, Permissions.managewarp, Permissions.time, Permissions.tp, Permissions.slap,
+            //        Permissions.kill, Permissions.logs,
+            //        Permissions.immunetokick, Permissions.tpothers));
 
-			AddDefaultGroup("trustedadmin", "admin",
-				string.Join(",", Permissions.maintenance, "tshock.cfg.*", "tshock.world.*", Permissions.butcher, Permissions.item,
-					Permissions.heal, Permissions.immunetoban, Permissions.usebanneditem));
+            //AddDefaultGroup("trustedadmin", "admin",
+            //    string.Join(",", Permissions.maintenance, "tshock.cfg.*", "tshock.world.*", Permissions.butcher, Permissions.item,
+            //        Permissions.heal, Permissions.immunetoban, Permissions.usebanneditem));
 
-			AddDefaultGroup("vip", "default", string.Join(",", Permissions.reservedslot));
+            //AddDefaultGroup("vip", "default", string.Join(",", Permissions.reservedslot));
 
 			Group.DefaultGroup = GetGroupByName(TShock.Config.DefaultGuestGroupName);
 		}

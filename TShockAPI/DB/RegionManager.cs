@@ -469,6 +469,11 @@ namespace TShockAPI.DB
 			return Regions.FirstOrDefault(r => r.Name.Equals(name) && r.WorldID == Main.worldID.ToString());
 		}
 
+        public Region GetRegionByWorldID(String wid)
+        {
+            return Regions.FirstOrDefault(r => r.WorldID.Equals(wid) && r.WorldID == Main.worldID.ToString());
+        }
+
 		public Region ZacksGetRegionByName(String name)
 		{
 			foreach (Region r in Regions)

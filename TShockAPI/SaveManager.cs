@@ -129,7 +129,7 @@ namespace TShockAPI
 								}
 								else
 									WorldFile.saveWorld(task.resetTime);
-									TShock.Utils.Broadcast("World saved.", Color.Yellow);
+									TShock.Utils.Broadcast("[MAP] 월드 저장&백업 완료.", Color.LawnGreen);
 									Log.Info(string.Format("World saved at ({0})", Main.worldPathName));
 							}
 							catch (Exception e)

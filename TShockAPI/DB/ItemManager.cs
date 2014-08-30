@@ -24,7 +24,7 @@ using MySql.Data.MySqlClient;
 
 namespace TShockAPI.DB
 {
-	public class ItemManager
+	public class ItemManager//here4
 	{
 		private IDbConnection database;
 		public List<ItemBan> ItemBans = new List<ItemBan>();

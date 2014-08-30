@@ -212,7 +212,7 @@ namespace TShockAPI
 			)]
 		public string ChatFormat = "{1}{2}{3}: {4}";
 
-		[Description("Change the player name when using chat above heads. This begins with a player name wrapped in brackets, as per Terraria's formatting. Same formatting as ChatFormat(minus the text aka {4}).")]
+		[Description("Change the player name when using chat above heads. This begins with a player name wrapped in brackets, as per Terraria's formatting. Same formatting as ChatFormat(minus the text aka {4}).")] //aka = also known as
 		public string ChatAboveHeadsFormat = "{2}";
 
 		[Description("Force the world time to be normal, day, or night.")]
@@ -320,7 +320,7 @@ namespace TShockAPI
 		public bool IgnoreChestStacksOnLoad = false;
 
 		[Description("The path of the directory where logs should be written into.")]
-		public string LogPath = "tshock";
+		public string LogPath = "tshock/ServerLogs";
 
 		[Description("Prevents players from placing tiles with an invalid style.")]
 		public bool PreventInvalidPlaceStyle = true;
@@ -387,6 +387,9 @@ namespace TShockAPI
 
 		[Description("The maximum allowable MP, before equipment buffs.")]
 		public int MaxMP = 200;
+
+        //[Description("Starting warp point.")]
+        //public string Starting = "";
 
 		/// <summary>
 		/// Reads a configuration file from a given path

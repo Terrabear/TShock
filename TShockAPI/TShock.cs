@@ -1091,16 +1091,20 @@ namespace TShockAPI
 					var text = args.Text;
 					Hooks.PlayerHooks.OnPlayerChat(tsplr, args.Text, ref text);
 					NetMessage.SendData((int)PacketTypes.ChatText, -1, args.Who, text, args.Who, tsplr.Group.R, tsplr.Group.G, tsplr.Group.B);
-					NetMessage.SendData((int)PacketTypes.PlayerInfo, -1, -1, name, args.Who, 0, 0, 0, 0);
+                    NetMessage.SendData((int)PacketTypes.PlayerInfo, -1, -1, name, args.Who, 0, 0, 0, 0);
 
-					string msg = String.Format("<{0}> {1}",
+					string msg = String.Format("{0}: {1}", //default: <{0}> {1} //ck6
 						String.Format(Config.ChatAboveHeadsFormat, tsplr.Group.Name, tsplr.Group.Prefix, tsplr.Name, tsplr.Group.Suffix),
 						text);
+                    
+                    //NetMessage.SendData((int)PacketTypes.PlayerInfo, -1, args.Who, name, args.Who, 0, 0, 0, 0);
+                    //NetMessage.SendData((int)PacketTypes.ChatText, -1, args.Who, msg, args.Who, tsplr.Group.R, tsplr.Group.G, tsplr.Group.B);
 
 					tsplr.SendMessage(msg, tsplr.Group.R, tsplr.Group.G, tsplr.Group.B);
+                    //Utils.Broadcast(msg, tsplr.Group.R, tsplr.Group.G, tsplr.Group.B);
 
 					TSPlayer.Server.SendMessage(msg, tsplr.Group.R, tsplr.Group.G, tsplr.Group.B);
-					Log.Info(string.Format("Broadcast: {0}", msg));
+					Log.Info(string.Format("{0}", msg));
 					args.Handled = true;
 				}
 			}
@@ -1237,7 +1241,7 @@ namespace TShockAPI
 				if (Main.ServerSideCharacter)
 				{
 					player.SendMessage(
-						player.IgnoreActionsForInventory = "Server side characters is enabled! Please /register or /login to play!",
+						player.IgnoreActionsForInventory = "Server side characters is enabled! Please /register or /login to play.",
 						Color.Red);
 					player.LoginHarassed = true;
 				}

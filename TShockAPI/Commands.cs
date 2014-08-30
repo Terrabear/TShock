@@ -197,13 +197,13 @@ namespace TShockAPI
 			});
 
 			#region Account Commands
-			add(new Command(Permissions.canlogin, AttemptLogin, "login")
+			add(new Command(Permissions.canlogin, AttemptLogin, "login", "join")
 			{
 				AllowServer = false,
 				DoLog = false,
 				HelpText = "Logs you into an account."
 			});
-			add(new Command(Permissions.canchangepassword, PasswordUser, "password")
+			add(new Command(Permissions.canchangepassword, PasswordUser, "password", "pw")
 			{
 				AllowServer = false,
 				DoLog = false,
@@ -221,11 +221,11 @@ namespace TShockAPI
 			{
 				HelpText = "Manages player bans."
 			});
-			add(new Command(Permissions.broadcast, Broadcast, "broadcast", "bc", "say")
+			add(new Command(Permissions.broadcast, Broadcast, "broadcast", "bc", "방송", "/")
 			{
 				HelpText = "Broadcasts a message to everyone on the server."
 			});
-			add(new Command(Permissions.logs, DisplayLogs, "displaylogs")
+			add(new Command(Permissions.logs, DisplayLogs, "displaylogs", "logs")
 			{
 				HelpText = "Toggles whether you receive server logs."
 			});
@@ -233,19 +233,19 @@ namespace TShockAPI
 			{
 				HelpText = "Manages groups."
 			});
-			add(new Command(Permissions.manageitem, ItemBan, "itemban")
+			add(new Command(Permissions.manageitem, ItemBan, "itemban", "ib")
 			{
 				HelpText = "Manages item bans."
 			});
-            add(new Command(Permissions.manageprojectile, ProjectileBan, "projban")
+            add(new Command(Permissions.manageprojectile, ProjectileBan, "projban", "pjb")
             {
                 HelpText = "Manages projectile bans."
             });
-			add(new Command(Permissions.managetile, TileBan, "tileban")
+			add(new Command(Permissions.managetile, TileBan, "tileban", "tlb")
 			{
 				HelpText = "Manages tile bans."
 			});
-			add(new Command(Permissions.manageregion, Region, "region")
+			add(new Command(Permissions.manageregion, Region, "region", "rg")
 			{
 				HelpText = "Manages regions."
 			});
@@ -261,11 +261,11 @@ namespace TShockAPI
 			{
 				HelpText = "Overrides serverside characters for a player, temporarily."
 			});
-			add(new Command(Permissions.savessc, SaveSSC, "savessc")
+			add(new Command(Permissions.savessc, SaveSSC, "savessc", "sssc")
 			{
 				HelpText = "Saves all serverside characters."
 			});
-			add(new Command(Permissions.settempgroup, TempGroup, "tempgroup")
+			add(new Command(Permissions.settempgroup, TempGroup, "tempgroup", "tpg")
 			{
 				HelpText = "Temporarily sets another player's group."
 			});
@@ -283,25 +283,25 @@ namespace TShockAPI
 			{
 				HelpText = "Confuses a player for an amount of time."
 			});
-			add(new Command(Permissions.annoy, Rocket, "rocket")
+			add(new Command(Permissions.annoy, Rocket, "rocket", "rk")
 			{
 				HelpText = "Rockets a player upwards. Requires SSC."
 			});
-			add(new Command(Permissions.annoy, FireWork, "firework")
+			add(new Command(Permissions.annoy, FireWork, "firework", "fw")
 			{
 				HelpText = "Spawns fireworks at a player."
 			});
 			#endregion
 			#region Configuration Commands
-			add(new Command(Permissions.maintenance, CheckUpdates, "checkupdates")
+			add(new Command(Permissions.maintenance, CheckUpdates, "checkupdates", "cku")
 			{
 				HelpText = "Checks for TShock updates."
 			});
-			add(new Command(Permissions.maintenance, Off, "off", "exit")
+			add(new Command(Permissions.maintenance, Off, "off", "exit", "close")
 			{
 				HelpText = "Shuts down the server while saving."
 			});
-			add(new Command(Permissions.maintenance, OffNoSave, "off-nosave", "exit-nosave")
+			add(new Command(Permissions.maintenance, OffNoSave, "off-n", "exit-n", "shut")
 			{
 				HelpText = "Shuts down the server without saving."
 			});
@@ -309,15 +309,15 @@ namespace TShockAPI
 			{
 				HelpText = "Reloads the server configuration file."
 			});
-			add(new Command(Permissions.maintenance, Restart, "restart")
+			add(new Command(Permissions.maintenance, Restart, "restart", "rst")
 			{
 				HelpText = "Restarts the server."
 			});
-			add(new Command(Permissions.cfgpassword, ServerPassword, "serverpassword")
+			add(new Command(Permissions.cfgpassword, ServerPassword, "serverpassword", "spw")
 			{
 				HelpText = "Changes the server password."
 			});
-			add(new Command(Permissions.maintenance, GetVersion, "version")
+			add(new Command(Permissions.maintenance, GetVersion, "version", "v")
 			{
 				HelpText = "Shows the TShock version."
 			});
@@ -326,7 +326,7 @@ namespace TShockAPI
 			 * add(new Command(Permissions.updateplugins, UpdatePlugins, "updateplugins")
 			{
 			});*/
-			add(new Command(Permissions.whitelist, Whitelist, "whitelist")
+			add(new Command(Permissions.whitelist, Whitelist, "whitelist", "wl")
 			{
 				HelpText = "Manages the server whitelist."
 			});
@@ -343,7 +343,7 @@ namespace TShockAPI
 			});
 			#endregion
 			#region NPC Commands
-			add(new Command(Permissions.butcher, Butcher, "butcher")
+			add(new Command(Permissions.butcher, Butcher, "butcher", "slay")
 			{
 				HelpText = "Kills hostile NPCs or NPCs of a certain type."
 			});
@@ -355,7 +355,7 @@ namespace TShockAPI
 			{
 				HelpText = "Starts an NPC invasion."
 			});
-			add(new Command(Permissions.maxspawns, MaxSpawns, "maxspawns")
+			add(new Command(Permissions.maxspawns, MaxSpawns, "maxspawns", "mpawn")
 			{
 				HelpText = "Sets the maximum number of NPCs."
 			});
@@ -369,7 +369,7 @@ namespace TShockAPI
 				AllowServer = false,
 				HelpText = "Spawns a number of mobs around you."
 			});
-			add(new Command(Permissions.spawnrate, SpawnRate, "spawnrate")
+			add(new Command(Permissions.spawnrate, SpawnRate, "spawnrate", "srate")
 			{
 				HelpText = "Sets the spawn rate of NPCs."
 			});
@@ -428,7 +428,7 @@ namespace TShockAPI
 			{
 				HelpText = "Toggles build protection."
 			});
-			add(new Command(Permissions.bloodmoon, Bloodmoon, "bloodmoon")
+			add(new Command(Permissions.bloodmoon, Bloodmoon, "bloodmoon", "bmoon")
 			{
 				HelpText = "Sets a blood moon."
 			});
@@ -496,20 +496,20 @@ namespace TShockAPI
 			});
 			#endregion
 			#region Other Commands
-			add(new Command(Permissions.buff, Buff, "buff")
+			add(new Command(Permissions.buff, Buff, "buff", "bf")
 			{
 				AllowServer = false,
 				HelpText = "Gives yourself a buff for an amount of time."
 			});
-			add(new Command(Permissions.clear, Clear, "clear")
+			add(new Command(Permissions.clear, Clear, "clear", "clr")
 			{
 				HelpText = "Clears item drops or projectiles."
 			});
-			add(new Command(Permissions.buffplayer, GBuff, "gbuff", "buffplayer")
+			add(new Command(Permissions.buffplayer, GBuff, "gbuff", "gbf")
 			{
 				HelpText = "Gives another player a buff for an amount of time."
 			});
-			add(new Command(Permissions.godmode, ToggleGodMode, "godmode")
+			add(new Command(Permissions.godmode, ToggleGodMode, "godmode", "gm")
 			{
 				HelpText = "Toggles godmode on a player."
 			});
@@ -521,11 +521,11 @@ namespace TShockAPI
 			{
 				HelpText = "Kills another player."
 			});
-			add(new Command(Permissions.cantalkinthird, ThirdPerson, "me")
+			add(new Command(Permissions.cantalkinthird, ThirdPerson, "third")
 			{
 				HelpText = "Sends an action message to everyone."
 			});
-			add(new Command(Permissions.canpartychat, PartyChat, "party", "p")
+			add(new Command(Permissions.canpartychat, PartyChat, "party", "pty")
 			{
 				AllowServer = false,
 				HelpText = "Sends a message to everyone on your team."
@@ -546,17 +546,17 @@ namespace TShockAPI
 			{
 				HelpText = "Shows the server information."
 			});
-			add(new Command(Permissions.warp, Warp, "warp")
+			add(new Command(Permissions.warp, Warp, "warp", "wp")
 			{
 				HelpText = "Teleports you to a warp point or manages warps."
 			});
-			add(new Command(Permissions.whisper, Whisper, "whisper", "w", "tell")
+			add(new Command(Permissions.whisper, Whisper, "whisper", "w")
 			{
 				HelpText = "Sends a PM to a player."
 			});
 			#endregion
 
-			add(new Command(Aliases, "aliases")
+			add(new Command(Aliases, "aliases", "abbr")
 			{
 				HelpText = "Shows a command's aliases."
 			});
@@ -568,7 +568,7 @@ namespace TShockAPI
 			{
 				HelpText = "Shows the message of the day."
 			});
-			add(new Command(ListConnectedPlayers, "playing", "online", "who")
+			add(new Command(ListConnectedPlayers, "online", "who")
 			{
 				HelpText = "Shows the currently connected players."
 			});
@@ -776,10 +776,32 @@ namespace TShockAPI
 					{
 						args.Player.PlayerData.CopyCharacter(args.Player);
 						TShock.CharacterDB.InsertPlayerData(args.Player);
-					}
+					} //here4
 					args.Player.SendSuccessMessage("Authenticated as " + user.Name + " successfully.");
 
+                    TSPlayer.All.SendMessage(String.Format("환영합니다! {0} 님이 신규 가입하셨습니다.", user.Name), Convert.ToByte(177), Convert.ToByte(219), Convert.ToByte(66));
 					Log.ConsoleInfo(args.Player.Name + " authenticated successfully as user: " + user.Name + ".");
+
+                    //string warpName = String.Join(" ", args.Parameters);
+
+                    //var warp = TShock.Warps.Find(TShock.Config.Starting);
+                    //if (warp != null)
+                    //{
+                    //    if (args.Player.Teleport(warp.Position.X * 4, warp.Position.Y * 4))
+                    //        args.Player.SendSuccessMessage("스타팅 포인트로 이동했습니다.");
+                    //}
+                    //else
+                    //{
+                    //    args.Player.SendErrorMessage("Starting point was not found!");
+                    //}
+
+                    for (int p = 167; p <= 170; p++)
+                    {
+                        var ply = args.Player;
+                        Projectile.NewProjectile(ply.TPlayer.position.X, ply.TPlayer.position.Y - 64f, 0f, -8f, p, 0, (float)0);
+                        Main.projectile[p].Kill();
+                    }
+
 					if ((args.Player.LoginHarassed) && (TShock.Config.RememberLeavePos))
 					{
 						if (TShock.RememberedPos.GetLeavePos(args.Player.Name, args.Player.IP) != Vector2.Zero)
@@ -1381,6 +1403,7 @@ namespace TShockAPI
 			if (Main.ServerSideCharacter)
 			{
 				args.Player.SendSuccessMessage("SSC has been saved.");
+                TShock.Utils.Broadcast("[SSC] 캐릭터 정보 저장 완료.",Color.LawnGreen);
 				foreach (TSPlayer player in TShock.Players)
 				{
 					if (player != null && player.IsLoggedIn && !player.IgnoreActionsForClearingTrashCan)
@@ -1496,8 +1519,8 @@ namespace TShockAPI
 			string message = string.Join(" ", args.Parameters);
 
 			TShock.Utils.Broadcast(
-				"(Server Broadcast) " + message, 
-				Convert.ToByte(TShock.Config.BroadcastRGB[0]), Convert.ToByte(TShock.Config.BroadcastRGB[1]), 
+				"[방송] " + message, 
+				Convert.ToByte(TShock.Config.BroadcastRGB[0]), Convert.ToByte(TShock.Config.BroadcastRGB[1]), //참고1
 				Convert.ToByte(TShock.Config.BroadcastRGB[2]));
 		}
 
@@ -1515,7 +1538,7 @@ namespace TShockAPI
 				}
 			}
 
-			string reason = ((args.Parameters.Count > 0) ? "Server shutting down: " + String.Join(" ", args.Parameters) : "Server shutting down!");
+            string reason = ((args.Parameters.Count > 0) ? "Server shutting down: " + String.Join(" ", args.Parameters) : "Server shutting down!");
 			TShock.Utils.StopServer(true, reason);
 		}
 		
@@ -1527,14 +1550,14 @@ namespace TShockAPI
 			}
 			else
 			{
-				string reason = ((args.Parameters.Count > 0) ? "Server shutting down: " + String.Join(" ", args.Parameters) : "Server shutting down!");
+                string reason = ((args.Parameters.Count > 0) ? "Server shutting down: " + String.Join(" ", args.Parameters) : "Server shutting down!");
 				TShock.Utils.RestartServer(true, reason);
 			}
 		}
 
 		private static void OffNoSave(CommandArgs args)
 		{
-			string reason = ((args.Parameters.Count > 0) ? "Server shutting down: " + String.Join(" ", args.Parameters) : "Server shutting down!");
+            string reason = ((args.Parameters.Count > 0) ? "Server shutting down: " + String.Join(" ", args.Parameters) : "Server shutting down!");
 			TShock.Utils.StopServer(false, reason);
 		}
 
@@ -4296,7 +4319,8 @@ namespace TShockAPI
 				args.Player.SendErrorMessage("You are muted.");
 			else if (playerTeam != 0)
 			{
-				string msg = string.Format("<{0}> {1}", args.Player.Name, String.Join(" ", args.Parameters));
+				string msg = string.Format("<{0}> {1}", args.Player.Name, String.Join(" ", args.Parameters)); //ck5
+                //string msg = string.Format("{1}", args.Player.Name, String.Join(" ", args.Parameters));
 				foreach (TSPlayer player in TShock.Players)
 				{
 					if (player != null && player.Active && player.Team == playerTeam)
@@ -4491,20 +4515,26 @@ namespace TShockAPI
 				TShock.Utils.SendMultipleMatchError(args.Player, players.Select(p => p.Name));
 			else
 			{
-				int type = 167;
+				int type = -1;
+                if (args.Parameters.Count == 1)
+                    args.Player.SendErrorMessage("Invalid Syntax! Proper syntax: /firework <player> [red|green|blue|yellow]");
 				if (args.Parameters.Count > 1)
 				{
-					if (args.Parameters[1].ToLower() == "green")
+                    if (args.Parameters[1].ToLower() == "red")
+						type = 167;
+					else if (args.Parameters[1].ToLower() == "green")
 						type = 168;
 					else if (args.Parameters[1].ToLower() == "blue")
 						type = 169;
 					else if (args.Parameters[1].ToLower() == "yellow")
 						type = 170;
-				}
+                }
+                else args.Player.SendErrorMessage("Invalid Syntax! Proper syntax: /firework <player> [red|green|blue|yellow]");
+
 				var ply = players[0];
 				int p = Projectile.NewProjectile(ply.TPlayer.position.X, ply.TPlayer.position.Y - 64f, 0f, -8f, type, 0, (float)0);
 				Main.projectile[p].Kill();
-				args.Player.SendSuccessMessage("Launched Firework on {0}.", ply.Name);
+				args.Player.SendSuccessMessage(("Launched {0} Firework on {1}."), args.Parameters[1], ply.Name);
 			}
 		}
 

@@ -820,8 +820,7 @@ namespace TShockAPI
 		public virtual void Disable(string reason = "", bool displayConsole = true)
 		{
 			LastThreat = DateTime.UtcNow;
-			SetBuff(33, 330, true); //Weak
-			SetBuff(32, 330, true); //Slow
+			SetBuff(80, 330, true); //Blackout
 			SetBuff(23, 330, true); //Cursed
 			SetBuff(47, 330, true); //Frozen
 
@@ -851,6 +850,41 @@ namespace TShockAPI
 			if (frame != null && frame.GetMethod().DeclaringType != null)
 				Log.Debug(frame.GetMethod().DeclaringType.Name + " called Disable().");
 		}
+
+        public virtual void Restrict(string reason = "", bool displayConsole = true)
+        {
+            LastThreat = DateTime.UtcNow;
+            SetBuff(80, 330, true); //Blackout
+            SetBuff(23, 330, true); //Cursed
+            SetBuff(33, 330, true); //Weak
+            SetBuff(32, 330, true); //Slow
+
+            if (ActiveChest != -1)
+            {
+                SendData(PacketTypes.ChestOpen, "", -1);
+            }
+
+            if (!string.IsNullOrEmpty(reason))
+            {
+                if ((DateTime.UtcNow - LastDisableNotification).TotalMilliseconds > 5000)
+                {
+                    if (displayConsole)
+                    {
+                        Log.ConsoleInfo(string.Format("Player {0} has been restricted for {1}.", Name, reason));
+                    }
+                    else
+                    {
+                        Log.Info("Player {0} has been restricted for {1}.", Name, reason);
+                    }
+                    LastDisableNotification = DateTime.UtcNow;
+                }
+            }
+            var trace = new StackTrace();
+            StackFrame frame = null;
+            frame = trace.GetFrame(1);
+            if (frame != null && frame.GetMethod().DeclaringType != null)
+                Log.Debug(frame.GetMethod().DeclaringType.Name + " called Restrict().");
+        }
 
 		public virtual void Whoopie(object time)
 		{
